@@ -10,3 +10,5 @@ class Producto(models.Model):
     imagen = models.ImageField(upload_to='images/', blank=True, null=True)
     def __str__(self):
         return self.nombreart
+
+    
