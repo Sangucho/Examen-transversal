@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'css/carta.css' %}" />
+    {% endblock css %}
+    <title>Ferremas</title>
+  </head>
+  <body>
+    {% block content %}
+    <h1 class="section-title">¡Bienvenido a Mundozapas {{ user }}!</h1>
+    <section class="carousel">
+      <div class="image-container">
+        <div class="slick-carousel">
+          <div><img src="{% static 'images/1.jpeg' %}" alt="Imagen 1" /></div>
+          <div><img src="{% static 'images/2.jpeg' %}" alt="Imagen 2" /></div>
+          <div><img src="{% static 'images/3.jpeg' %}" alt="Imagen 3" /></div>
+          <div><img src="{% static 'images/4.jpeg' %}" alt="Imagen 4" /></div>
+        </div>
+      </div>
+    </section>
+
+    <h1 class="section-title">Nuestros Productos</h1>
+    <section class="section-item">
+      {% if productos %}
+      <div class="container">
+        {% for producto in productos %}
+        <div class="card">
+          <h2>{{ producto.nombreart }}</h2>
+          <p>{{ producto.marca }}</p>
+          <p>{{ producto.descripcion }}</p>
+          <span>Precio: ${{ producto.precio }}</span>
+          <div class="pic">
+            {% if producto.imagen %}
+            <img
+              src="{{ producto.imagen.url }}"
+              alt="{{ producto.nombreart }}"
+              class="product-image"
+            />
+            {% endif %}
+          </div>
+          <button class="buy-button">Comprar</button>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No hay productos disponibles.</p>
+      {% endif %}
+    </section>
+    {% endblock %}
+  </body>
+</html>
